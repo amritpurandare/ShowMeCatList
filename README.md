@@ -1,2 +1,2 @@
 # ShowMeCatList
-This is a demo application for coding pracice
+This is a demo application for coding practice
