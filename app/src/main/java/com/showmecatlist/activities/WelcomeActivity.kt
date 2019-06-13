@@ -7,6 +7,8 @@ import android.os.Handler
 import com.showmecatlist.R
 import com.showmecatlist.utils.SPLASH_DELAY
 
+
+// Launcher activity of the application
 class WelcomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
