@@ -10,6 +10,9 @@ import com.showmecatlist.R
 import com.showmecatlist.dataclasses.Pet
 import com.showmecatlist.utils.TYPE_CAT
 
+/*
+* Adapter class to display the data into the Recycler view
+* */
 
 class CatAdapter(private val dataSet: List<Pet>, private val context: Context) :
     RecyclerView.Adapter<CatAdapter.MyViewHolder>() {
