@@ -1,12 +1,13 @@
-package com.showmecatlist
+package com.showmecatlist.activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.showmecatlist.R
 
-class WelcomeActivity : AppCompatActivity() {
+class HomeScreen : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_welcome)
+        setContentView(R.layout.activity_home_screen)
     }
 }
