@@ -20,6 +20,7 @@ class WelcomeActivity : AppCompatActivity() {
             val intent = Intent(this, HomeScreen::class.java)
 
             startActivity(intent)
+
             finish()
 
         }, SPLASH_DELAY)

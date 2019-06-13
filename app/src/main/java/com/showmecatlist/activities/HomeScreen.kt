@@ -10,7 +10,7 @@ import android.widget.Toast
 import com.showmecatlist.R
 import com.showmecatlist.adapters.CatAdapter
 import com.showmecatlist.dataclasses.Pet
-import com.showmecatlist.network.CatData
+import com.showmecatlist.network.CatRepository
 import com.showmecatlist.network.CatListCallbackService
 import com.showmecatlist.utils.isNetworkAvailable
 
@@ -30,8 +30,9 @@ class HomeScreen : AppCompatActivity(), CatListCallbackService {
 
         progress.show()
 
+        // Check for network availability. If available fetch the person list.
         if (isNetworkAvailable(this)) {
-            CatData().fetchCatData(this)
+            CatRepository().fetchCatData(this)
         } else {
             progress.hide()
             Toast.makeText(this, getString(R.string.error_no_internet), Toast.LENGTH_LONG).show()
@@ -40,8 +41,11 @@ class HomeScreen : AppCompatActivity(), CatListCallbackService {
     }
 
     override fun sendCatList(petList: MutableList<Pet>?) {
+
+        // check for valid data
         if (petList != null && !petList.isEmpty()) {
 
+            // if valid data, enable the recycler view
             mRecyclerView = findViewById(R.id.recycler_view)
             mRecyclerViewManager = LinearLayoutManager(this@HomeScreen)
             mCatAdapter = CatAdapter(petList, this@HomeScreen)

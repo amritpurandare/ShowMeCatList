@@ -8,6 +8,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
+/*
+* Retrofit service to fetch the Person / CAT data
+* */
 interface GetCatDataService {
 
     @GET(URL_ENDPOINT_PERSON)

@@ -11,11 +11,23 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class CatData {
+/*
+* This class will fetch the data from back-end and will revert it back to view.
+* */
+class CatRepository {
 
-    private val TAG: String = CatData::class.java.name
+    private val TAG: String = CatRepository::class.java.name
 
 
+    /*
+    * This method fetches person data from back-end.
+    *
+    * IT will filter the fetched data based on gender and then based on pet type == CAT
+    *
+    * Then It will sort both male and female cat list in ascending order.
+    *
+    * Finally it  adds the MALE and FEMALE sections in it and returns the final list to the caller.
+    * */
     fun fetchCatData(callBack: CatListCallbackService) {
 
         GetCatDataService.create().getData().enqueue(object : Callback<List<Person>> {
