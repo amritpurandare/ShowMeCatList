@@ -1,5 +1,11 @@
 <resources>
+
     <string name="app_name">ShowMeCatList</string>
     <string name="title_activity_welcome">WelcomeActivity</string>
-    <string name="no_internet_message">No Internet connection</string>
+
+    <string name="error_no_internet">No Internet connection</string>
+    <string name="error_message">Error fetching cat list.</string>
+    <string name="error_no_persons">No persons found.</string>
+    <string name="error_no_cats">No cats in the list</string>
+    <string name="home_title">HomeScreen</string>
 </resources>
