@@ -14,8 +14,9 @@
             android:supportsRtl="true"
             android:usesCleartextTraffic="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".activities.HomeScreen">
-        </activity>
+        <activity android:name=".activities.HomeScreen"
+                  android:label="@string/home_title"
+        />
         <activity android:name=".activities.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
