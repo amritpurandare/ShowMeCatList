@@ -53,61 +53,91 @@ class CatRepository {
                     Log.d("Person list size ", body.size.toString())
                 }
 
+                val maleCatList = getMaleCatList(body)
 
-                // Filter the males
-                val maleList = body.filter { it.gender == MALE }
-
-
-                // Filter the females
-                val feMaleList = body.filter { it.gender == FEMALE }
-
-                // From Male list, filter the pets having type == Cat
-                var maleCatList = mutableListOf<Pet>()
-                for (person in maleList) {
-                    val cat = person.pets?.filter { it.type == TYPE_CAT }
-                    if (cat != null) maleCatList.addAll(cat)
-                }
-
-                // From feMale list, filter the pets having type == Cat
-                var feMaleCatList = mutableListOf<Pet>()
-                for (person in feMaleList) {
-                    val cat = person.pets?.filter { it.type == TYPE_CAT }
-                    if (cat != null) feMaleCatList.addAll(cat)
-                }
-
-                // sort the male cat list
-                maleCatList = maleCatList.sortedBy { it.name.toLowerCase() } as MutableList<Pet>
-
-                // sort the female cat list
-                feMaleCatList = feMaleCatList.sortedBy { it.name.toLowerCase() } as MutableList<Pet>
+                val feMaleCatList = getFemaleCatList(body)
 
                 if (BuildConfig.DEBUG) {
                     Log.d("Sorted male list size ", maleCatList.size.toString())
                     Log.d("Sorted Femal list size ", feMaleCatList.size.toString())
                 }
 
-
-                val petList: MutableList<Pet>? = mutableListOf()
-                if (maleCatList.size > 0) {
-
-                    // Add the MALE Section
-                    val male = Pet(name = MALE, type = MALE)
-                    petList?.add(male)
-                    petList?.addAll(maleCatList)
-                }
-
-                if (feMaleCatList.size > 0) {
-
-                    // Add the FEMALE Section
-                    val female = Pet(name = FEMALE, type = FEMALE)
-                    petList?.add(female)
-                    petList?.addAll(feMaleCatList)
-                }
+                val petList: MutableList<Pet>? = getMaleFemalePetList(maleCatList, feMaleCatList)
 
                 callBack.sendCatList(petList)
 
             }
         })
+
+    }
+
+    /*
+    * This function returns sorted and filtered cat list having owner gender as MALE
+    * */
+    private fun getMaleCatList(body: List<Person>): MutableList<Pet> {
+
+        // Filter the males
+        val maleList = body.filter { it.gender == MALE }
+
+        // From Male list, filter the pets having type == Cat
+        var maleCatList = mutableListOf<Pet>()
+        for (person in maleList) {
+            val cat = person.pets?.filter { it.type == TYPE_CAT }
+            if (cat != null) maleCatList.addAll(cat)
+        }
+
+        // sort the male cat list
+        maleCatList = maleCatList.sortedBy { it.name.toLowerCase() } as MutableList<Pet>
+
+        return maleCatList
+    }
+
+
+    /**
+     ** * This function returns sorted and filtered cat list having owner gender as FEMALE
+     */
+    private fun getFemaleCatList(body: List<Person>): MutableList<Pet> {
+
+        // Filter the females
+        val feMaleList = body.filter { it.gender == FEMALE }
+
+
+        // From feMale list, filter the pets having type == Cat
+        var feMaleCatList = mutableListOf<Pet>()
+        for (person in feMaleList) {
+            val cat = person.pets?.filter { it.type == TYPE_CAT }
+            if (cat != null) feMaleCatList.addAll(cat)
+        }
+
+        // sort the female cat list
+        feMaleCatList = feMaleCatList.sortedBy { it.name.toLowerCase() } as MutableList<Pet>
+
+        return feMaleCatList
+    }
+
+    private fun getMaleFemalePetList(
+        maleCatList: MutableList<Pet>,
+        feMaleCatList: MutableList<Pet>
+    ): MutableList<Pet>? {
+
+        val petList: MutableList<Pet>? = mutableListOf()
+        if (maleCatList.size > 0) {
+
+            // Add the MALE Section
+            val male = Pet(name = MALE, type = MALE)
+            petList?.add(male)
+            petList?.addAll(maleCatList)
+        }
+
+        if (feMaleCatList.size > 0) {
+
+            // Add the FEMALE Section
+            val female = Pet(name = FEMALE, type = FEMALE)
+            petList?.add(female)
+            petList?.addAll(feMaleCatList)
+        }
+
+        return petList
 
     }
 }
