@@ -64,6 +64,7 @@ class HomeScreen : AppCompatActivity() {
 
                     if (body == null || body.isEmpty()) {
                         Toast.makeText(this@HomeScreen, getString(R.string.error_no_persons), Toast.LENGTH_LONG).show()
+                        progress.hide()
                         return
                     }
 
@@ -121,13 +122,13 @@ class HomeScreen : AppCompatActivity() {
                         petList.addAll(feMaleCatList)
                     }
 
+                    progress.hide()
                     if (!petList.isEmpty()) {
 
                         mRecyclerView = findViewById(R.id.recycler_view)
                         mRecyclerViewManager = LinearLayoutManager(this@HomeScreen)
                         mCatAdapter = CatAdapter(petList)
 
-                        progress.hide()
                         mRecyclerView.visibility = View.VISIBLE
 
                         mRecyclerView.apply {
@@ -142,6 +143,7 @@ class HomeScreen : AppCompatActivity() {
                 }
             })
         } else {
+            progress.hide()
             Toast.makeText(this, getString(R.string.error_no_internet), Toast.LENGTH_LONG).show()
         }
     }
