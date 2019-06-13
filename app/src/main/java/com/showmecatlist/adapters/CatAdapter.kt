@@ -1,5 +1,6 @@
 package com.showmecatlist.adapters
 
+import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +11,8 @@ import com.showmecatlist.dataclasses.Pet
 import com.showmecatlist.utils.TYPE_CAT
 
 
-class CatAdapter(private val dataSet: List<Pet>) : RecyclerView.Adapter<CatAdapter.MyViewHolder>() {
+class CatAdapter(private val dataSet: List<Pet>, private val context: Context) :
+    RecyclerView.Adapter<CatAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): MyViewHolder {
         // create a new view
@@ -27,9 +29,19 @@ class CatAdapter(private val dataSet: List<Pet>) : RecyclerView.Adapter<CatAdapt
     override fun onBindViewHolder(holder: MyViewHolder, p1: Int) {
 
         if (dataSet[p1].type == TYPE_CAT) {
-            holder.textView.setPadding(60, 10, 10, 10)
+            holder.textView.setPadding(
+                context.resources.getDimension(R.dimen.sixty_dp).toInt(),
+                context.resources.getDimension(R.dimen.ten_dp).toInt(),
+                context.resources.getDimension(R.dimen.ten_dp).toInt(),
+                context.resources.getDimension(R.dimen.ten_dp).toInt()
+            )
         } else {
-            holder.textView.setPadding(10, 20, 10, 20)
+            holder.textView.setPadding(
+                context.resources.getDimension(R.dimen.ten_dp).toInt(),
+                context.resources.getDimension(R.dimen.twenty_dp).toInt(),
+                context.resources.getDimension(R.dimen.ten_dp).toInt(),
+                context.resources.getDimension(R.dimen.twenty_dp).toInt()
+            )
         }
 
         holder.textView.text = dataSet[p1].name

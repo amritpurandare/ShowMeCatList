@@ -127,7 +127,7 @@ class HomeScreen : AppCompatActivity() {
 
                         mRecyclerView = findViewById(R.id.recycler_view)
                         mRecyclerViewManager = LinearLayoutManager(this@HomeScreen)
-                        mCatAdapter = CatAdapter(petList)
+                        mCatAdapter = CatAdapter(petList,this@HomeScreen)
 
                         mRecyclerView.visibility = View.VISIBLE
 
